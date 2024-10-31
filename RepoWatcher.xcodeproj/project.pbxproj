@@ -57,8 +57,16 @@
 				Assets.xcassets,
 				Models/Repository.swift,
 				NetworkManager.swift,
+				"UserDefaults+Ext.swift",
 			);
 			target = ACC565AE2CD131A600DA0EF8 /* RepoWatcherWidgetExtension */;
+		};
+		ACC566292CD3A0B800DA0EF8 /* Exceptions for "RepoWatcherWidget" folder in "RepoWatcher" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SelectRepo.swift,
+			);
+			target = ACE868652CCFEC120053D485 /* RepoWatcher */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -66,6 +74,7 @@
 		ACC565B52CD131A600DA0EF8 /* RepoWatcherWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				ACC566292CD3A0B800DA0EF8 /* Exceptions for "RepoWatcherWidget" folder in "RepoWatcher" target */,
 				ACC565C32CD131A800DA0EF8 /* Exceptions for "RepoWatcherWidget" folder in "RepoWatcherWidgetExtension" target */,
 			);
 			path = RepoWatcherWidget;
