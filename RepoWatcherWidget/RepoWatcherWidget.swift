@@ -59,9 +59,14 @@ struct RepoWatcherWidget: Widget {
             RepoWatcherWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Repo watcher widget")
-        .description("This is an example widget.")
-        .supportedFamilies([.systemMedium, .systemLarge])
+                               .configurationDisplayName("Repo watcher widget")
+                               .description("This is an example widget.")
+                               .supportedFamilies([.systemMedium,
+                                                   .systemLarge,
+                                                   .accessoryCircular,
+                                                   .accessoryInline,
+                                                   .accessoryRectangular]
+                               )
     }
 }
 

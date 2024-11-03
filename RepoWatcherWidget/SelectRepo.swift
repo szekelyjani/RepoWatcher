@@ -16,7 +16,6 @@ struct SelectRepo: AppIntent, WidgetConfigurationIntent, CustomIntentMigratedApp
     @Parameter(title: "Repo", optionsProvider: RepoOptionsProvider())
     var repo: String?
     
-    
     struct RepoOptionsProvider: DynamicOptionsProvider {
         func results() async throws -> [String] {
             guard let repos = UserDefaults.shared.value(forKey: UserDefaults.repoKey) as? [String] else {

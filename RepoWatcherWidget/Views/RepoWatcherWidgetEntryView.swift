@@ -21,6 +21,12 @@ struct RepoWatcherWidgetEntryView : View {
                 RepoMediumView(repo: entry.repo)
                 ContributorMediumView(repo: entry.repo)
             }
+        case .accessoryCircular:
+            RepoWatcherLockScreenCircularView(entry: entry)
+        case .accessoryInline:
+            Text("\(entry.repo.name) - \(entry.repo.daySinceLastActivity)")
+        case .accessoryRectangular:
+            RepoWatcherLockScreenRectangularView(entry: entry)
         default: Text("Under development...")
         }
     }
