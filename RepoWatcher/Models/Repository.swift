@@ -16,6 +16,7 @@ struct Repository {
     let forks: Int
     let pushedAt: Date
     var avatarData: Data
+    var contributors: [Contributor] = []
     
     var daySinceLastActivity: Int {
         let daySinceLastActivity = Calendar.current.dateComponents([.day], from: pushedAt, to: .now).day

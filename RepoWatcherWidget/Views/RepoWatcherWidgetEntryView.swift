@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct RepoWatcherWidgetEntryView : View {
     @Environment(\.widgetFamily) private var family
@@ -16,12 +17,18 @@ struct RepoWatcherWidgetEntryView : View {
         case .systemMedium:
             RepoMediumView(repo: entry.repo)
         case .systemLarge:
-            EmptyView()
+            VStack(spacing: 60) {
+                RepoMediumView(repo: entry.repo)
+                ContributorMediumView(repo: entry.repo)
+            }
         default: Text("Under development...")
         }
     }
 }
 
-#Preview {
-    RepoWatcherWidgetEntryView(entry: Provider.Entry(date: Date(), repo: MockData.repo1))
+#Preview(as: .systemLarge) {
+    RepoWatcherWidget()
+} timeline: {
+    RepoEntry(date: .now, repo: MockData.repo1)
+    RepoEntry(date: .now, repo: MockData.repo2)
 }

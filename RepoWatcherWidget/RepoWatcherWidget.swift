@@ -22,9 +22,22 @@ struct Provider: AppIntentTimelineProvider {
         
         do {
             let repoToShow = RepoURL.prefix + (configuration.repo ?? RepoURL.defaultRepo)
-            var repo = try await NetworkManager.shared.getRepo(url: repoToShow)
+            let codingData: Repository.CodingData = try await NetworkManager.shared.fetchData(from: repoToShow)
+            var repo = codingData.repo
             let avatarImage = await NetworkManager.shared.downloadImageData(from: repo.owner.avatarUrl)
             repo.avatarData = avatarImage ?? Data()
+            
+            if context.family == .systemLarge {
+                let contributorCodingData: [Contributor.CodingData] = try await NetworkManager.shared.fetchData(from: repoToShow + "/contributors")
+                let contributors = contributorCodingData.map { $0.contributor }
+                var topFour = Array(contributors.prefix(4))
+                
+                for i in topFour.indices {
+                    let avatarData = await NetworkManager.shared.downloadImageData(from: topFour[i].avatarUrl)
+                    topFour[i].avatarData = avatarData ?? Data()
+                }
+                repo.contributors = topFour
+            }
             
             let entry = RepoEntry(date: Date(), repo: repo)
             return Timeline(entries: [entry], policy: .after(nextUpdate))

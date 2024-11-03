@@ -55,6 +55,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
+				Models/Contributor.swift,
 				Models/Repository.swift,
 				NetworkManager.swift,
 				"UserDefaults+Ext.swift",

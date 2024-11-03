@@ -17,21 +17,21 @@ final class NetworkManager {
         decoder.dateDecodingStrategy = .iso8601
     }
     
-    func getRepo(url urlString: String) async throws -> Repository {
+    func fetchData<T>(from urlString: String) async throws -> T where T: Decodable {
         guard let url = URL(string: urlString) else {
             throw NetworkError.invalidRepoURL
         }
         let (data, response) = try await URLSession.shared.data(from: url)
         
-        guard let reponse = response as? HTTPURLResponse, reponse.statusCode == 200 else {
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw NetworkError.invalidResponse
         }
         
         do {
-            let codingData = try decoder.decode(Repository.CodingData.self, from: data)
-            return codingData.repo
+            let codingData = try decoder.decode(T.self, from: data)
+            return codingData
         } catch {
-            throw NetworkError.invalidRepoData
+            throw NetworkError.invalidResponse
         }
     }
     
